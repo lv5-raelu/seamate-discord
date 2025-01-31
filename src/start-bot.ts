@@ -3,7 +3,13 @@ import { Options, Partials } from 'discord.js';
 import { createRequire } from 'node:module';
 
 import { Button } from './buttons/index.js';
-import { DevCommand, HelpCommand, InfoCommand, TestCommand } from './commands/chat/index.js';
+import {
+    DevCommand,
+    HelpCommand,
+    InfoCommand,
+    InsertUserCommand,
+    TestCommand,
+} from './commands/chat/index.js';
 import {
     ChatCommandMetadata,
     Command,
@@ -12,6 +18,7 @@ import {
 } from './commands/index.js';
 import { ViewDateSent } from './commands/message/index.js';
 import { ViewDateJoined } from './commands/user/index.js';
+import { DatabaseService } from './db/database-service.js';
 import {
     ButtonHandler,
     CommandHandler,
@@ -40,6 +47,7 @@ let Logs = require('../lang/logs.json');
 async function start(): Promise<void> {
     // Services
     let eventDataService = new EventDataService();
+    let prisma = new DatabaseService();
 
     // Client
     let client = new CustomClient({
@@ -68,6 +76,7 @@ async function start(): Promise<void> {
         new ViewDateJoined(),
 
         // TODO: Add new commands here
+        new InsertUserCommand(prisma),
     ];
 
     // Buttons
