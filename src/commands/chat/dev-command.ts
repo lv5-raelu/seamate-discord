@@ -18,6 +18,7 @@ export class DevCommand implements Command {
     public names = [Lang.getRef('chatCommands.dev', Language.Default)];
     public deferType = CommandDeferType.HIDDEN;
     public requireClientPerms: PermissionsString[] = [];
+    public requireUserPerms: PermissionsString[] = [];
     public async execute(intr: ChatInputCommandInteraction, data: EventData): Promise<void> {
         if (!Config.developers.includes(intr.user.id)) {
             await InteractionUtils.send(intr, Lang.getEmbed('validationEmbeds.devOnly', data.lang));

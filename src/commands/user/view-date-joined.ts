@@ -13,6 +13,7 @@ export class ViewDateJoined implements Command {
     public cooldown = new RateLimiter(1, 5000);
     public deferType = CommandDeferType.HIDDEN;
     public requireClientPerms: PermissionsString[] = [];
+    public requireUserPerms: PermissionsString[] = [];
 
     public async execute(intr: UserContextMenuCommandInteraction, data: EventData): Promise<void> {
         let joinDate: Date;

@@ -11,6 +11,7 @@ export class HelpCommand implements Command {
     public names = [Lang.getRef('chatCommands.help', Language.Default)];
     public deferType = CommandDeferType.HIDDEN;
     public requireClientPerms: PermissionsString[] = [];
+    public requireUserPerms: PermissionsString[] = [];
     public async execute(intr: ChatInputCommandInteraction, data: EventData): Promise<void> {
         let args = {
             option: intr.options.getString(
